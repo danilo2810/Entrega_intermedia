@@ -1,0 +1,33 @@
+{% extends "header.html" %}
+{% load static %}
+
+{% block navbar %}
+    <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
+    <a class="navbar-brand" href="{% url 'personas' %}">Usuarios</a>
+    <a class="navbar-brand" href="{% url 'productos' %}">Productos</a>
+    <a class="navbar-brand" href="{% url 'busquedas' %}">Busquedas</a>
+{% endblock %}
+
+{% block Page_heading %}
+    <h1>PROVEEDORES!!!!!!!!!!</h1>
+{% endblock %}
+
+{% block formulario %}
+
+{% if miFormulario.errors %}
+<h3 style="color:red;">Datos ingresados Erroneos</h3>
+{% endif %}
+
+{{ mensaje }}
+<form action="" method="POST">{% csrf_token %}
+   
+    <table>
+
+        {{ miFormulario.as_table }}
+
+    </table>
+    <h5>Formato de fecha aaaa-mm-dd</h5>
+    <input type="submit",value="Enviar">
+</form>
+
+{% endblock %}

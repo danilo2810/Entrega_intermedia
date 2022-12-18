@@ -1,0 +1,20 @@
+{% extends "header.html" %}
+{% load static %}
+
+{% block navbar %}
+    <a class="navbar-brand" href="{% url 'personas' %}">Usuarios</a>
+    <a class="navbar-brand" href="{% url 'productos' %}">Productos</a>
+    <a class="navbar-brand" href="{% url 'proveedores' %}">Proveedores</a>
+    <a class="navbar-brand" href="{% url 'busquedas' %}">Busquedas</a>
+{% endblock %}
+
+{% block Page_heading %}
+    <h1>Inicio</h1>
+    <h4>{{ mensaje }}</h4>
+{% endblock %}
+
+
+
+{% block Formulario %}    
+
+ {% endblock %}

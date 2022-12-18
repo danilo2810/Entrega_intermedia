@@ -1,0 +1,129 @@
+{% extends "header.html" %}
+{% load static %}
+
+{% block navbar %}
+    <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
+    <a class="navbar-brand" href="{% url 'personas' %}">Usuarios</a>
+    <a class="navbar-brand" href="{% url 'productos' %}">Productos</a>
+    <a class="navbar-brand" href="{% url 'proveedores' %}">Proveedores</a>
+{% endblock %}
+
+{% block Page_heading %}
+    <h1>Busquedas</h1>
+{% endblock %}
+
+
+
+{% block formulario %}
+    <h2>Busqueda general (usuario/producto/proveedor)</h2>
+    <h4>{{ mensaje }}</h4>
+    <form action="{% url 'buscarGeneral' %}" method="GET">
+
+        <input type="text" name="nombre" id="nombre" placeholder="a">  
+        <input type="submit",value="Buscar">
+
+    </form>
+    {% if status == 4 %}
+        {% if nombre_persona %}
+        <h3>Usuarios encontrados</h3>
+        {% for item in nombre_persona %} 
+            <h4>{{item.nombre_persona}}</h4>
+        {% endfor %}
+        {% else %}
+        <h3>No se encontraron usuarios!</h3>
+        {% endif %}
+
+        {% if nombre_producto %}
+        <h3>Producots encontrados</h3>
+        {% for item in nombre_producto %} 
+            <h4>{{item.nombre_producto}}</h4>
+        {% endfor %}
+        {% else %}
+        <h3>No se encontraron productos!</h3>
+        {% endif %}
+
+        {% if nombre_proveedor %}
+        <h3>Proveedores encontrados</h3>
+        {% for item in nombre_proveedor %} 
+            <h4>{{item.razon_social}}</h4>
+        {% endfor %}
+        {% else %}
+        <h3>No se encontraron proveedores!</h3>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
+
+{% block columna_i %}
+    <h2>Busqueda de usuarios</h2>
+    <h4>{{ mensaje }}</h4>
+    
+        <form action="{% url 'buscarUsuario' %}" method="GET">
+
+            <input type="text" name="nombre" id="nombre" placeholder="Danilo">  
+            <input type="submit",value="Buscar">
+
+        </form>
+
+    {% if status == 1 %}
+        {% if resultado %}
+        <h3>Usuarios encontrados</h3>
+        {% for item in resultado %} 
+            <h4>{{item.nombre_persona}}</h4>
+        {% endfor %}
+        {% else %}
+
+        <h3>No se encontraron usuarios!</h3>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block columna_c %}
+    <h2>Busqueda de productos</h2>
+    <h4>{{ mensaje }}</h4>
+
+    <form action="{% url 'buscarProducto' %}" method="GET">
+
+        <input type="text" name="nombre" id="nombre" placeholder="Motosierra">  
+        <input type="submit",value="Buscar">
+
+    </form>
+
+    {% if status == 2 %}
+        {% if resultado %}
+        <h3>Productos encontrados</h3>
+        {% for item in resultado %} 
+            <h4>{{item.nombre_producto}}</h4>
+        {% endfor %}
+        {% else %}
+
+        <h3>No se encontraron productos!</h3>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
+
+{% block columna_d %}
+    <h2>Busqueda de proveedores</h2>
+    <h4>{{ mensaje }}</h4>
+
+    <form action="{% url 'buscarProveedor' %}" method="GET">
+
+        <input type="text" name="nombre" id="nombre" placeholder="Maxigoma">  
+        <input type="submit",value="Buscar">
+
+    </form>
+
+    {% if status == 3 %}
+        {% if resultado %}
+        <h3>Proveedores encontrados</h3>
+        {% for item in resultado %} 
+            <h4>{{item.razon_social}}</h4>
+        {% endfor %}
+        {% else %}
+
+        <h3>No se encontraron proveedores!</h3>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
